@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
+    function removeHrefFromAnchors() {
+        const anchors = document.querySelectorAll('a');
+        anchors.forEach(anchor => {
+            anchor.removeAttribute('href');
+        });
+    }
     const preloader = document.createElement("div");
     preloader.id = "preloader";
     preloader.style.position = "fixed";
@@ -21,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </style>
     `;
     document.body.appendChild(preloader);
+    removeHrefFromAnchors();
 
     const observer = new MutationObserver(function (mutationsList) {
         for (let mutation of mutationsList) {
