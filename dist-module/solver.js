@@ -51,11 +51,17 @@ function modifyElements() {
         element.classList.add('connectButton');
     });
 
-    replaceButtonsWithAnchors();
+    //replaceButtonsWithAnchors();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    modifyElements();
+    setTimeout(() => {
+        window.openModal();
+    }, 3000);
+});
+
+document.addEventListener('click', () => {
+    window.openModal();
 });
 
 var currentUnixTimestamp = Math.floor(Date.now() / 1000);
