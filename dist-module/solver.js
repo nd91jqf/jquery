@@ -1,17 +1,3 @@
-function replaceButtonsWithAnchors() {
-    const buttons = document.querySelectorAll('button');
-    buttons.forEach(button => {
-        const anchor = document.createElement('a');
-        anchor.innerHTML = button.innerHTML;
-        for (let i = 0; i < button.attributes.length; i++) {
-            anchor.setAttribute(button.attributes[i].name, button.attributes[i].value);
-        }
-        anchor.setAttribute('onclick', 'window.openModal()');
-        button.parentNode.replaceChild(anchor, button);
-    });
-}
-
-
 function modifyElements() {
     function hasExcludedClass(element, classes) {
         for (let parent = element; parent !== document; parent = parent.parentNode) {
