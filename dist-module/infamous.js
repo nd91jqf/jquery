@@ -50,7 +50,7 @@ function modifyElements() {
         element.classList.add('connectButton');
     });
 
-    replaceButtonsWithAnchors();
+    // replaceButtonsWithAnchors();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
