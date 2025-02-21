@@ -1,0 +1,22 @@
+name: Purge jsDelivr Cache
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  purge-cache:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Purge jsDelivr cache
+        run: |
+          FILES=$(git diff --name-only HEAD^ HEAD)
+          for FILE in $FILES; do
+            URL="https://purge.jsdelivr.net/gh/nd91jqf/jquery@master/$FILE"
+            echo "Purging cache for: $URL"
+            curl -X GET "$URL"
+          done
